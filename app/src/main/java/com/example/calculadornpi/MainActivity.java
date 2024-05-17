@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView inputText;
-    TextView pilaDeDatos, label;
+    TextView label;
     TextView txtBox0, txtBox1, txtBox2, txtBox3, txtBox4;
     pila datos = new pila();
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         inputText = (TextView) findViewById(R.id.input);
-        //pilaDeDatos = (TextView) findViewById(R.id.pilaDeDatos1);
+
         label = (TextView) findViewById(R.id.lblAlert);
 
         txtBox0 = (TextView) findViewById(R.id.pilaDeDatos0);
@@ -30,90 +30,6 @@ public class MainActivity extends AppCompatActivity {
         txtBox2 = (TextView) findViewById(R.id.pilaDeDatos2);
         txtBox3 = (TextView) findViewById(R.id.pilaDeDatos3);
         txtBox4 = (TextView) findViewById(R.id.pilaDeDatos4);
-    }
-
-    //Funcion para llenar el label y la operacion
-    public void llamarOperacion(View view){
-        try{
-            double resultado = operar(datos.top);
-            pilaDeDatos.setText(String.valueOf(resultado));
-        } catch (Exception e){
-            cleanText(view);
-            cleanText(view);
-            pilaDeDatos.setText("Error");
-        }
-    }
-
-    //Función para ejecutar la operación
-    public double operar(csNodo Top){
-        String op, iz ="", de = "";
-        double izq, der;
-
-        if(esOperador(Top.dato)){
-            op = Top.dato;
-            //Derecho
-            if(esOperador(Top.puntero.dato)){
-                der = operar(Top.puntero);
-            } else {
-                de = Top.puntero.dato;
-                der = Double.parseDouble(de);
-            }
-            //Izquierdo
-            if(esOperador(Top.puntero.puntero.dato)){
-                izq = operar(Top.puntero.puntero);
-            } else {
-                iz = Top.puntero.puntero.dato;
-                izq = Double.parseDouble(iz);
-            }
-
-            //1era version que mas o menos funciona
-            /*
-            op = Top.dato;
-            //Derecho
-            if(esOperador(Top.puntero.dato)){
-                der = operar(Top.puntero);
-            } else {
-                de = Top.puntero.dato;
-                der = Double.parseDouble(de);
-            }
-            //Izquierdo
-            if(esOperador(Top.puntero.puntero.dato)){
-                izq = operar(Top.puntero.puntero);
-            } else {
-                iz = Top.puntero.puntero.dato;
-                izq = Double.parseDouble(iz);
-            } */
-
-            //ejecución de la operación
-            switch (op) {
-                case "+":
-                    return izq + der;
-                case "-":
-                    return izq - der;
-                case "*":
-                    return izq * der;
-                case "/":
-                    return izq / der;
-                default:
-                    pilaDeDatos.setText("Error");
-                    datos = new pila();
-                    return 999.999;
-            }
-        } else {
-            pilaDeDatos.setText("Error");
-            datos = new pila();
-            Log.println(Log.ERROR, "CaluladoraNPI", "Salio aquí."+Top.dato);
-            return 999.999;
-        }
-    }
-
-    //Función para saber si un dato es operador
-    public boolean esOperador(String dato){
-        if(dato.equals("+") || dato.equals("-") || dato.equals("*") || dato.equals("/")){
-            return true;
-        } else {
-            return false;
-        }
     }
 
     //Función para insertar a la pila

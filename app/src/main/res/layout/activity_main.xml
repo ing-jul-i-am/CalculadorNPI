@@ -7,21 +7,6 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/buttonOperar"
-        android:layout_width="139dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="816dp"
-        android:onClick="llamarOperacion"
-        android:text="Op"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:iconTint="#3F51B5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/buttonTres"
         android:layout_width="65dp"
         android:layout_height="77dp"
